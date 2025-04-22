@@ -1,0 +1,463 @@
+:root {
+    --primary-color: #2196f3;
+    --primary-dark: #1976d2;
+    --text-color: #333;
+    --text-light: #666;
+    --background: linear-gradient(45deg, #2196f3, #31aeff);
+    --box-bg: rgba(255, 255, 255, 0.9);
+    --error-color: #f44336;
+    --success-color: #4caf50;
+    --border-color: #ddd;
+}
+
+[data-theme="dark"] {
+    --primary-color: #64b5f6;
+    --primary-dark: #42a5f5;
+    --text-color: #fff;
+    --text-light: #ccc;
+    --background: linear-gradient(45deg, #1a237e, #0d47a1);
+    --box-bg: rgba(33, 33, 33, 0.9);
+    --border-color: #444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--text-color);
+}
+
+/* Theme Switch */
+.theme-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.theme-label {
+    width: 60px;
+    height: 30px;
+    background-color: var(--box-bg);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+}
+
+.theme-label i {
+    font-size: 16px;
+}
+
+.fa-sun {
+    color: #ffd700;
+}
+
+.fa-moon {
+    color: #747474;
+}
+
+#theme-toggle {
+    display: none;
+}
+
+#theme-toggle:checked+.theme-label::after {
+    left: 32px;
+}
+
+.theme-label::after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background-color: var(--primary-color);
+    position: absolute;
+    border-radius: 50%;
+    left: 4px;
+    transition: 0.3s;
+}
+
+/* Container and Login Box */
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-box {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    background: var(--box-bg);
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.login-box h2 {
+    margin-bottom: 30px;
+    color: var(--text-color);
+    text-align: center;
+    font-size: 2em;
+}
+
+/* Social Login */
+.social-login {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.google {
+    background-color: #fff;
+    color: #757575;
+    border: 1px solid #ddd;
+}
+
+.facebook {
+    background-color: #1877f2;
+    color: white;
+}
+
+.google:hover {
+    background-color: #f5f5f5;
+}
+
+.facebook:hover {
+    background-color: #166fe5;
+}
+
+/* Divider */
+.divider {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+.divider span {
+    background-color: var(--box-bg);
+    padding: 0 10px;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+/* Input Groups */
+.input-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--text-color);
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    outline: none;
+    background: transparent;
+    transition: 0.3s;
+}
+
+.input-group label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--text-light);
+    pointer-events: none;
+    transition: 0.3s ease-out;
+}
+
+.input-group input:focus,
+.input-group input:valid {
+    border-bottom-color: var(--primary-color);
+}
+
+.input-group input:focus~label,
+.input-group input:valid~label {
+    transform: translateY(-20px);
+    font-size: 12px;
+    color: var(--primary-color);
+}
+
+/* Password Toggle */
+.toggle-password {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+}
+
+/* Password Strength */
+.password-strength {
+    margin-top: 5px;
+}
+
+.strength-meter {
+    height: 4px;
+    background-color: var(--border-color);
+    border-radius: 2px;
+    margin-bottom: 5px;
+}
+
+.strength-text {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+/* Error Messages */
+.error-message {
+    color: var(--error-color);
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+/* Remember & Forgot */
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.remember-forgot label {
+    color: var(--text-light);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.remember-forgot input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.forgot-password {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Login Button */
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    position: relative;
+}
+
+.login-btn:hover {
+    background: var(--primary-dark);
+}
+
+.spinner {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ffffff;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@keyframes spin {
+    0% {
+        transform: translateY(-50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+/* Register Link */
+.register-link {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.register-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background: var(--box-bg);
+    margin: 15% auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--text-light);
+    cursor: pointer;
+}
+
+/* OTP Input */
+.otp-input-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.otp-input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    background: transparent;
+    color: var(--text-color);
+}
+
+/* Toast Notifications */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.toast {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+.toast.success {
+    background-color: var(--success-color);
+}
+
+.toast.error {
+    background-color: var(--error-color);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .login-box {
+        padding: 20px;
+    }
+
+    .remember-forgot {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .social-login {
+        flex-direction: column;
+    }
+
+    .otp-input {
+        width: 35px;
+        height: 35px;
+    }
+}
